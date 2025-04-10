@@ -1,5 +1,24 @@
+import math
+import logging
+from datetime import datetime
+
+# Set up logging
+logging.basicConfig(filename='calculator.log', level=logging.INFO)
+
+def get_number_input(prompt):
+    while True:
+        try:
+            return float(input(prompt))
+        except ValueError:
+            print("Please enter a valid number!")
+
+def square_root(a):
+    return math.sqrt(a)
+
 def add(a, b):
-    return a + b
+    result = a + b
+    logging.info(f"{datetime.now()}: ADD - {a} + {b} = {result}")
+    return result
 
 
 def subtract(a, b):
@@ -22,10 +41,11 @@ if __name__ == "__main__":
     print("2. Subtract")
     print("3. Multiply")
     print("4. Divide")
+    print("5. Square Root")
 
     choice = input("Enter operation (1/2/3/4): ")
-    num1 = float(input("Enter first number: "))
-    num2 = float(input("Enter second number: "))
+    num1 = get_number_input("Enter first number: ")
+    num2 = get_number_input("Enter second number (skip if entered option '5'): ")
 
     if choice == '1':
         print(f"Result: {add(num1, num2)}")
@@ -35,5 +55,7 @@ if __name__ == "__main__":
         print(f"Result: {multiply(num1, num2)}")
     elif choice == '4':
         print(f"Result: {divide(num1, num2)}")
+    elif choice == '5':
+        print(f"Result: {square_root(num1)}")
     else:
         print("Invalid input")
