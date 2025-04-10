@@ -13,6 +13,8 @@ def get_number_input(prompt):
             print("Please enter a valid number!")
 
 def square_root(a):
+    if a < 0:
+        raise ValueError("Cannot calculate square root of negative number")
     return math.sqrt(a)
 
 def add(a, b):
@@ -43,7 +45,7 @@ if __name__ == "__main__":
     print("4. Divide")
     print("5. Square Root")
 
-    choice = input("Enter operation (1/2/3/4): ")
+    choice = input("Enter operation (1/2/3/4/5): ")
     num1 = get_number_input("Enter first number: ")
     num2 = get_number_input("Enter second number (skip if entered option '5'): ")
 
